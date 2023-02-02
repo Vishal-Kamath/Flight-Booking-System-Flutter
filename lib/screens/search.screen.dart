@@ -1,8 +1,18 @@
-import 'package:aireasy/page/signin.page.dart';
 import 'package:aireasy/utils/styles.dart';
-import 'package:aireasy/widgets/custom_logo.widget.dart';
+import 'package:aireasy/widgets/custom_dropdown.widget.dart';
 import 'package:aireasy/widgets/cutom_buttom.widget.dart';
 import 'package:flutter/material.dart';
+
+const List<String> FlightList = [
+  'Mumbai',
+  'New Delhi',
+  'Pune',
+  'Hyderabad',
+  'Kolkata',
+  'Chennai',
+  'Goa',
+  'Bengaluru'
+];
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -14,30 +24,35 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
-        appBar: AppBar(
-      backgroundColor: Styles.navColor,
-      elevation: 1,
-      title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
+      backgroundColor: Styles.light,
+      body: ListView(
+          padding:
+              EdgeInsets.symmetric(vertical: 30, horizontal: width * 0.025),
           children: [
-            const Logo(
-              fontSize: 30,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
+            const CustomDropdown(
+              list: FlightList,
+              title: 'Source',
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const CustomDropdown(
+              list: FlightList,
+              title: 'Destination',
+            ),
+            const SizedBox(
+              height: 20,
             ),
             CustomButton(
-              onTapFunction: () {
-                Navigator.pushNamed(context, SignInPage.routeName);
-              },
-              text: const Text(
-                'Sign In',
-                textAlign: TextAlign.center,
-              ),
-              width: 100,
-            )
+                onTapFunction: () {},
+                text: Text(
+                  'Search',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Styles.light, fontSize: 25),
+                ))
           ]),
-    ));
+    );
   }
 }

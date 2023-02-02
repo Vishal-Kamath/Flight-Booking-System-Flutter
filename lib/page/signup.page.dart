@@ -1,4 +1,5 @@
 import 'package:aireasy/utils/styles.dart';
+import 'package:aireasy/widgets/custom_dropdown.widget.dart';
 import 'package:aireasy/widgets/custom_logo.widget.dart';
 import 'package:aireasy/widgets/custom_textfield.widget.dart';
 import 'package:aireasy/widgets/custom_container.widget.dart';
@@ -80,10 +81,8 @@ class _SignUpPageState extends State<SignUpPage> {
                     const SizedBox(
                       height: 10,
                     ),
-                    CustomTextField(
-                        passwordField: false,
-                        controller: _genderController,
-                        hintText: 'gender'),
+                    const CustomDropdown(
+                        list: ['Male', 'Female', 'Others'], title: 'gender'),
                     const SizedBox(
                       height: 10,
                     ),
@@ -167,7 +166,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 const Text('already have an account? '),
                 TextButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, SignUpPage.routeName);
+                      Navigator.pop(context);
                     },
                     child: Text('Sign In'))
               ]),

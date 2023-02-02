@@ -1,3 +1,4 @@
+import 'package:aireasy/widgets/custom_outline.widget.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatefulWidget {
@@ -18,29 +19,25 @@ class _CustomTextFieldState extends State<CustomTextField> {
   bool isObscure = true;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          border: Border.all(
-              width: 2, color: const Color.fromRGBO(227, 242, 253, 1)),
-          borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(5), topRight: Radius.circular(5))),
-      child: TextField(
-        obscureText: widget.passwordField ? isObscure : false,
-        controller: widget.controller,
-        decoration: InputDecoration(
-            fillColor: Colors.white,
-            filled: true,
-            hintText: widget.hintText,
-            suffixIcon: widget.passwordField
-                ? TextButton(
-                    child: isObscure ? Text('Show') : Text('Hide'),
-                    onPressed: () {
-                      setState(() {
-                        isObscure = !isObscure;
-                      });
-                    })
-                : null),
-      ),
-    );
+    return CustomOutline(
+        title: widget.hintText,
+        child: TextField(
+          obscureText: widget.passwordField ? isObscure : false,
+          controller: widget.controller,
+          decoration: InputDecoration(
+              border: InputBorder.none,
+              fillColor: Colors.white,
+              filled: true,
+              suffixIcon: widget.passwordField
+                  ? TextButton(
+                      child:
+                          isObscure ? const Text('Show') : const Text('Hide'),
+                      onPressed: () {
+                        setState(() {
+                          isObscure = !isObscure;
+                        });
+                      })
+                  : null),
+        ));
   }
 }
